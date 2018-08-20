@@ -1,0 +1,54 @@
+$minW: 1700px;
+$blue: #1290eb;
+$blue2: #1290eb; //#1d9ffd
+$orange:  #ff9731;
+$textC:#39424b;
+$textC2:#5f6d7b;
+$textC3:#e5e5e5;
+$boxBg: #f5f5f5;
+$border: #eee;
+$border2:#f0f0f0;
+$hover: #128ae0;
+$greenBg:#3cb779;
+
+$img: "../images/";
+
+%center {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+/**head_icons*/
+@mixin iconHead($name) {
+	background-image: url($img + 'icon_head.png');
+	background-repeat: no-repeat;
+
+	@if none == $name {
+	} @else if (note == $name) {
+		background-position: -81px 14px;
+	} @else if (person == $name) {
+		background-position: -10px -10px;
+	}@else if (shopcar == $name) {
+		background-position: -45px -10px;
+	}
+}
+
+/**pay_icons*/
+@mixin iconPay($name) {
+	background-image: url($img + 'icon_pay.png') !important;
+	background-repeat: no-repeat;
+
+	@if none == $name {
+	} @else if (order == $name) {
+		background-position: 0 4px;
+	} @else if (zf == $name) {
+		background-position: 0 -61px;
+	} @else if (wx == $name) {
+		background-position: 0 -159px;
+	} @else if (select == $name) {
+		background-position: 0 -234px;
+	} @else if (noSelect == $name) {
+		background-position: 0 -278px;
+	}
+}
+

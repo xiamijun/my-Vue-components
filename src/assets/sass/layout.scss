@@ -1,0 +1,84 @@
+/** swiper--start*/
+
+.el-carousel__indicators {
+  background: rgba($color: #000, $alpha: 0.3);
+  padding: 0 13px;
+  border-radius: 10px;
+  bottom: 20px;
+}
+.el-menu--horizontal>.el-menu-item{
+  line-height: .5rem;
+  height: .5rem;
+  font-size: .14rem;
+}
+.el-menu--horizontal>.el-menu-item.is-active{
+  border-bottom: 2px solid #06A8F0;
+  color: #06A8F0;
+}
+.el-menu--horizontal{
+  border-bottom: none;
+}
+.el-menu--horizontal {
+  //min-width: 1024px;
+}
+.inputThree .el-input__inner{
+  width: 2.9rem;
+  height: 0.26rem;
+}
+.el-menu--horizontal>.el-submenu .el-submenu__title{
+  font-size: .14rem;
+  height: .5rem;
+  line-height: .5rem;
+}
+.citySearch .el-select>.el-input{
+  width: 120px;
+}
+.el-checkbox-group {
+  font-size: 14px;
+}
+.el-checkbox__inner{
+  border-color:#aaa ;
+}
+.el-button--primary.is-plain:focus, .el-button--primary.is-plain:hover {
+  color: #409EFF;
+  background: #ecf5ff;
+  border-color: #b3d8ff;
+}
+.switchClass .el-switch__core{
+  border-color: #dcdfe6 !important;
+}
+.el-switch__core{
+  border-color: #f98671 !important;
+}
+.el-switch__core:after {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  border-radius: 100%;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  border: 1px solid #f98671;
+  box-sizing: border-box;
+}
+.switchClass .el-switch__core:after {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  border-radius: 100%;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  border: 1px solid #dcdfe6;
+}
+.updateExplainText .el-input__inner {
+  width: 7rem;
+  height: 1.6rem;
+}
+.applicationName .el-input{
+  width: 2rem;
+}

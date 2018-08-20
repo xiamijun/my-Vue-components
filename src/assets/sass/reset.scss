@@ -1,0 +1,193 @@
+/*reset css start*/
+* {
+	margin:0;
+	padding:0;
+}
+html,body,#app{
+	//height: 100%;
+  background-color: #F3F3F4;
+}
+body {
+	font: 14px 'Microsoft YaHei', Verdana, sans-serif, 'FZY3JW--GB1-0','android-font','Helvetica';
+	background-color: #fff;
+	color: #39424b;
+	-webkit-text-size-adjust:none;
+}
+
+input,select,textarea {
+	font-size:100%;
+}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #999; }
+input::placeholder, textarea:-moz-placeholder { color: #999;}
+input::-moz-placeholder, textarea::-moz-placeholder { color: #999;}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {color: #999;}
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+	display: block;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+	table-layout: fixed;
+}
+fieldset,img {
+	border:0 none;
+}
+iframe {
+	display:block;
+}
+abbr,acronym {
+	border:none;
+	font-variant:normal;
+}
+del {
+	text-decoration:line-through;
+}
+address,caption,cite,code,dfn,em,th,var,i {
+	font-style:normal;
+	font-weight:500;
+}
+ol,ul {
+	list-style:none;
+}
+caption,th {
+	text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size:100%;
+	font-weight:500;
+}
+q:before,q:after {
+	content:'';
+}
+sub, sup {
+	font-size:75%;
+	line-height:0;
+	position:relative;
+	vertical-align:baseline;
+}
+sup {
+	top:-0.5em;
+}
+sub {
+	bottom:-0.25em;
+}
+ins,a {
+	text-decoration:none;
+}
+button{
+	outline:none;
+	cursor: pointer;
+}
+.clearfix:before,.clearfix:after {
+	content:"";
+	display:table;
+}
+.clearfix:after {
+	clear:both;
+	overflow:hidden;
+}
+.fl {
+	float:left;
+}
+.fr {
+	float:right;
+}
+.hide {
+	display: none;
+}
+
+
+@font-face {
+  font-family: 'iconfont';
+  src: url('../iconfont/iconfont.eot');
+  src: url('../iconfont/iconfont.eot?#iefix') format('embedded-opentype'),
+  url('../iconfont/iconfont.woff') format('woff'),
+  url('../iconfont/iconfont.ttf') format('truetype'),
+  url('../iconfont/iconfont.svg#iconfont') format('svg');
+}
+.iconfont{
+  font-family:"iconfont" !important;
+  font-size:16px;font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-gaojiwifi-:before { content: "\e616"; }
+
+.icon-wifi-:before { content: "\e617"; }
+
+.icon-nfc-:before { content: "\e618"; }
+
+.icon-wifi--:before { content: "\e619"; }
+
+.icon-nfc-1:before { content: "\e61a"; }
+
+.icon-gaojiwifi-1:before { content: "\e61b"; }
+
+.icon-sim-:before { content: "\e61c"; }
+
+.icon-sim:before { content: "\e61d"; }
+
+.icon-gps-:before { content: "\e61e"; }
+
+.icon-gps-1:before { content: "\e61f"; }
+
+.icon-shexiangtou-:before { content: "\e620"; }
+
+.icon-lanya-:before { content: "\e621"; }
+
+.icon-usb-:before { content: "\e622"; }
+
+.icon-shexiangtou-1:before { content: "\e623"; }
+
+.icon-usb-1:before { content: "\e624"; }
+
+.icon-xianzhi-:before { content: "\e625"; }
+
+.icon-lanya-1:before { content: "\e626"; }
+
+.icon-xianzhi-1:before { content: "\e627"; }
+
+.icon-piliang-:before { content: "\e62a"; }
+
+.icon-bianji-:before { content: "\e62b"; }
+
+.icon-banji-:before { content: "\e62c"; }
+
+.icon-chakancelve-:before { content: "\e62d"; }
+
+.icon-jinrupingtai-:before { content: "\e62e"; }
+
+.icon-chakan-:before { content: "\e62f"; }
+
+.icon-shouquanguanliyuan-:before { content: "\e630"; }
+
+.icon-shanchu-:before { content: "\e631"; }
+
+.icon-shezhi-:before { content: "\e632"; }
+
+.icon-sousuo-:before { content: "\e634"; }
+
+.icon-yonghuxiangqing-:before { content: "\e635"; }
+
+.icon-zhongzhi-:before { content: "\e636"; }
+
+.icon-shebeizhuangtai-:before { content: "\e633"; }
+
+.icon-shebeizhuangtaixuanzhong-:before { content: "\e637"; }
+
+.icon-wujiaoxing-:before{content: '\e638'}
+
+.icon-wujiaoxingxuanzhong-:before{content: '\e639'}
+
+.icon-paixu-1:before{content: '\e63e'}
+
+.icon-paixu-:before{content: '\e63d'}
+
+.icon-qiyong-1:before{content: '\e641'}
+
+.icon-jinyong-:before{content: '\e642'}
+
+/*reset css end*/
