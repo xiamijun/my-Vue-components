@@ -18,6 +18,7 @@
       </div>
       <CheckboxGroup v-model="checkAllGroup" @on-change="checkAllGroupChange" class="checkboxGroup">
         <div class="col">
+
           <Checkbox label="第1周"></Checkbox>
           <Checkbox label="第4周"></Checkbox>
           <Checkbox label="第7周"></Checkbox>
@@ -48,8 +49,7 @@
 
 <script>
   export default {
-    name: "chooseW" +
-    "eek",
+    name: "chooseWeek",
     data(){
       return{
         showModal:true,

@@ -12,9 +12,14 @@ export default new Router({
       component: resolve=>require(['@/pages/index'],resolve)
     },
     {
-      path: '/',
+      path: '/chooseWeek',
       name: 'chooseWeek',
       component: resolve=>require(['@/components/chooseWeek/chooseWeek'],resolve)
+    },
+    {
+      path: '/passwordConfirm',
+      name: 'passwordConfirm',
+      component: resolve=>require(['@/components/passwordConfirm/passwordConfirm'],resolve)
     },
   ]
 })

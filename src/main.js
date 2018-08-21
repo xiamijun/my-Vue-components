@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import Vuex from 'vuex'
 import iView from 'iview';
+import 'iview/dist/styles/iview.css';
 
 import ElementUI from 'element-ui'
 import './assets/sass/reset.scss'//初始化样式

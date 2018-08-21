@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <button @click="goChooseWeek">全选、单周、双周</button>
+    <button @click="goPasswordConfirm">密码强校验</button>
   </div>
 </template>
 
@@ -15,6 +16,9 @@
     methods: {
       goChooseWeek(){
         this.$router.push('chooseWeek')
+      },
+      goPasswordConfirm(){
+        this.$router.push('passwordConfirm')
       }
     }
   }
