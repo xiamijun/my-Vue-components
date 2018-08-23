@@ -2,6 +2,7 @@
   <div class="container">
     <button @click="goChooseWeek">全选、单周、双周</button>
     <button @click="goPasswordConfirm">密码强校验</button>
+    <button @click="goSequentCheckbox">选择连续checkbox</button>
   </div>
 </template>
 
@@ -19,6 +20,9 @@
       },
       goPasswordConfirm(){
         this.$router.push('passwordConfirm')
+      },
+      goSequentCheckbox(){
+        this.$router.push('sequentCheckbox')
       }
     }
   }

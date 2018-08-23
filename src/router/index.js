@@ -21,5 +21,10 @@ export default new Router({
       name: 'passwordConfirm',
       component: resolve=>require(['@/components/passwordConfirm/passwordConfirm'],resolve)
     },
+    {
+      path: '/sequentCheckbox',
+      name: 'sequentCheckbox',
+      component: resolve=>require(['@/components/sequentCheckbox/sequentCheckbox'],resolve)
+    },
   ]
 })
