@@ -1,49 +1,40 @@
 <template>
-  <div>
-    <Modal v-model="weekModalFlag" title="上课周次" @on-ok="ok" @on-cancel="cancel">
-      <div style="border-bottom: 1px solid #e9e9e9;padding-bottom:6px;margin-bottom:6px;">
-        <span style="font-weight: bold">请选择上课周次</span>
-        <Checkbox
-          :indeterminate="indeterminate"
-          :value="checkAll"
-          @click.prevent.native="handleCheckAll" style="float: right">全选</Checkbox>
-        <Checkbox
-          v-model="checkDouble"
-          @click.native="handleCheckDouble"
-          style="float: right">双周</Checkbox>
-        <Checkbox
-          v-model="checkSingle"
-          @click.native="handleCheckSingle"
-          style="float: right">单周</Checkbox>
-      </div>
-      <CheckboxGroup v-model="checkAllGroup" @on-change="checkAllGroupChange" class="checkboxGroup">
-        <div class="col">
-          <Checkbox label="第1周"></Checkbox>
-          <Checkbox label="第4周"></Checkbox>
-          <Checkbox label="第7周"></Checkbox>
-          <Checkbox label="第10周"></Checkbox>
-          <Checkbox label="第13周"></Checkbox>
-          <Checkbox label="第16周"></Checkbox>
-        </div>
-        <div class="col">
-          <Checkbox label="第2周"></Checkbox>
-          <Checkbox label="第5周"></Checkbox>
-          <Checkbox label="第8周"></Checkbox>
-          <Checkbox label="第11周"></Checkbox>
-          <Checkbox label="第14周"></Checkbox>
-          <Checkbox label="第17周"></Checkbox>
-        </div>
-        <div class="col">
-          <Checkbox label="第3周"></Checkbox>
-          <Checkbox label="第6周"></Checkbox>
-          <Checkbox label="第9周"></Checkbox>
-          <Checkbox label="第12周"></Checkbox>
-          <Checkbox label="第15周"></Checkbox>
-          <Checkbox label="第18周"></Checkbox>
-        </div>
-      </CheckboxGroup>
-    </Modal>
-  </div>
+  <Modal
+    v-model="weekModalFlag"
+    title="上课周次"
+    @on-ok="ok"
+    @on-cancel="cancel"
+    :mask-closable="false"
+    @on-visible-change="changeVisible"
+  >
+    <div style="border-bottom: 1px solid #e9e9e9;padding-bottom:6px;margin-bottom:6px;">
+      <span style="font-weight: bold">请选择上课周次</span>
+      <Checkbox
+        :indeterminate="indeterminate"
+        :value="checkAll"
+        @click.prevent.native="handleCheckAll" style="float: right">全选</Checkbox>
+      <Checkbox
+        v-model="checkDouble"
+        @click.native="handleCheckDouble"
+        style="float: right">双周</Checkbox>
+      <Checkbox
+        v-model="checkSingle"
+        @click.native="handleCheckSingle"
+        style="float: right">单周</Checkbox>
+    </div>
+    <CheckboxGroup
+      v-model="checkAllGroup"
+      @on-change="checkAllGroupChange"
+      class="checkboxGroup"
+    >
+      <Checkbox
+        v-for="(item, index) in weekList"
+        :label="item"
+        class="checkboxItem"
+        :key="index"
+      ></Checkbox>
+    </CheckboxGroup>
+  </Modal>
 </template>
 
 <script>
@@ -51,16 +42,37 @@
     name: "chooseWeek",
     data(){
       return{
-        weekModalFlag:true,
         indeterminate: false,
         checkAll: false,
         checkAllGroup: [],
-        maxLength: 18,
         checkDouble: false,
         checkSingle: false,
+        weekList:['第1周','第2周','第3周','第4周','第5周','第6周','第7周','第8周','第9周','第10周','第11周','第12周',]
+      }
+    },
+    props:{
+      weekModalFlag:{
+        required: true,
+        type: Boolean
       }
     },
     methods: {
+      _updateVisible(flag) {
+        this.weekModalFlag = flag;
+        this.$emit('update:weekModalFlag', this.weekModalFlag); //更新对话框的显示状态
+      },
+      //对话框显示隐藏
+      changeVisible(){
+        if (this.weekModalFlag){
+
+        } else {
+          this.checkAllGroup=[];
+          this.checkAll=false;
+          this.checkSingle = false;
+          this.checkDouble = false;
+          this.indeterminate=false;
+        }
+      },
       //点击全选事件
       handleCheckAll () {
         this.checkSingle = false;
@@ -73,9 +85,9 @@
         this.indeterminate = false;
 
         if (this.checkAll) {
-          for (let i = 1; i <= this.maxLength;i ++) {
-            this.checkAllGroup.push('第' + i + '周');
-          }
+          this.weekList.forEach(item=>{
+            this.checkAllGroup.push(item);
+          });
         } else {
           this.checkAllGroup = [];
         }
@@ -84,7 +96,7 @@
       checkAllGroupChange (data) {
         this.checkDouble = false;
         this.checkSingle = false;
-        if (data.length === this.maxLength) {
+        if (data.length === this.weekList.length) {
           this.indeterminate = false;
           this.checkAll = true;
         } else if (data.length > 0) {
@@ -104,9 +116,11 @@
           this.checkAllGroup = [];
           this.indeterminate = false;
         } else {
-          for (let i = 2; i <= this.maxLength;i += 2) {
-            this.checkAllGroup.push('第' + i + '周');
-          }
+          this.weekList.forEach(item=>{
+            if (this.getNumFormStr(item) % 2 === 0){
+              this.checkAllGroup.push(item);
+            }
+          });
         }
       },
       //点击单周事件
@@ -118,36 +132,43 @@
           this.checkAllGroup = [];
           this.indeterminate = false;
         } else {
-          for (let i = 1; i <= this.maxLength; i += 2) {
-            this.checkAllGroup.push('第' + i + '周');
-          }
+          this.weekList.forEach(item=>{
+            if (this.getNumFormStr(item) % 2 === 1){
+              this.checkAllGroup.push(item);
+            }
+          });
         }
       },
       //确定回调事件
       ok(){
-        this.$alert(this.checkAllGroup.join(','), '成功', {
-          confirmButtonText: '确定',
-        });
+        if (this.checkAllGroup.length===0){
+          this.$emit('ok', '选择周次');
+          this._updateVisible(false);
+        } else {
+          this.$emit('ok', this.checkAllGroup.join(',')); // 显示选中周次
+          this._updateVisible(false);
+        }
       },
       //取消回调事件
       cancel(){
-
-      }
+        this._updateVisible(false);
+      },
+      //字符串里提取数字
+      getNumFormStr(str){
+        return str.replace(/[^0-9]/ig,"");
+      },
     }
   }
 </script>
 
 <style scoped>
-  .col{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
   .checkboxGroup{
     display: flex;
     height: 200px;
-    width: 300px;
-    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .checkboxItem{
+    flex-basis: 20%;
   }
 </style>

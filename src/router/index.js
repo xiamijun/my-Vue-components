@@ -14,7 +14,7 @@ export default new Router({
     {
       path: '/chooseWeek',
       name: 'chooseWeek',
-      component: resolve=>require(['@/components/chooseWeek/chooseWeek'],resolve)
+      component: resolve=>require(['@/components/chooseWeek/example'],resolve)
     },
     {
       path: '/passwordConfirm',
@@ -24,7 +24,7 @@ export default new Router({
     {
       path: '/sequentCheckbox',
       name: 'sequentCheckbox',
-      component: resolve=>require(['@/components/sequentCheckbox/sequentCheckbox'],resolve)
+      component: resolve=>require(['@/components/sequentCheckbox/example'],resolve)
     },
   ]
 })

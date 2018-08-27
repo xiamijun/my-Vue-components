@@ -1,33 +1,35 @@
 <template>
-  <div>
-    <Modal v-model="periodModal" title="上课节次" @on-ok="ok" @on-cancel="cancel">
-      <div style="border-bottom: 1px solid #e9e9e9;padding-bottom:6px;margin-bottom:6px;">
-        <span style="font-weight: bold">请选择上课节次</span>
-        <Checkbox
-          :indeterminate="indeterminate"
-          :value="checkAll"
-          @click.prevent.native="handleCheckAll" style="float: right">全选</Checkbox>
-      </div>
-      <CheckboxGroup v-model="checkAllGroup" @on-change="checkAllGroupChange" class="checkboxGroup">
-        <div class="col">
-          <Checkbox label="第1节" :disabled="enableArr.indexOf(1)===-1"></Checkbox>
-          <Checkbox label="第4节" class="sep" :disabled="enableArr.indexOf(4)===-1"></Checkbox>
-          <Checkbox label="第7节" class="sep" :disabled="enableArr.indexOf(7)===-1"></Checkbox>
-          <Checkbox label="第10节" class="sep" :disabled="enableArr.indexOf(10)===-1"></Checkbox>
-        </div>
-        <div class="col">
-          <Checkbox label="第2节" :disabled="enableArr.indexOf(2)===-1"></Checkbox>
-          <Checkbox label="第5节" class="sep" :disabled="enableArr.indexOf(5)===-1"></Checkbox>
-          <Checkbox label="第8节" class="sep" :disabled="enableArr.indexOf(8)===-1"></Checkbox>
-        </div>
-        <div class="col">
-          <Checkbox label="第3节" :disabled="enableArr.indexOf(3)===-1"></Checkbox>
-          <Checkbox label="第6节" class="sep" :disabled="enableArr.indexOf(6)===-1"></Checkbox>
-          <Checkbox label="第9节" class="sep" :disabled="enableArr.indexOf(9)===-1"></Checkbox>
-        </div>
-      </CheckboxGroup>
-    </Modal>
-  </div>
+  <Modal
+    v-model="periodModal"
+    title="上课节次"
+    @on-ok="ok"
+    @on-cancel="cancel"
+    :mask-closable="false"
+    @on-visible-change="changeVisible"
+  >
+    <div style="border-bottom: 1px solid #e9e9e9;padding-bottom:6px;margin-bottom:6px;">
+      <span style="font-weight: bold">请选择上课节次</span>
+      <Checkbox
+        :indeterminate="indeterminate"
+        :value="checkAll"
+        @click.prevent.native="handleCheckAll"
+        style="float: right"
+      >全选</Checkbox>
+    </div>
+    <CheckboxGroup
+      v-model="checkAllGroup"
+      @on-change="checkAllGroupChange"
+      class="checkboxGroup"
+    >
+      <Checkbox
+        v-for="(item,index) in AllPeriod"
+        :label="item"
+        :disabled="enableArr.indexOf(index+1)===-1"
+        class="checkboxItem"
+        :key="index"
+      ></Checkbox>
+    </CheckboxGroup>
+  </Modal>
 </template>
 
 <script>
@@ -35,15 +37,34 @@
     name: "sequentCheckbox",
     data(){
       return{
-        periodModal:true,
         indeterminate: false,
         checkAll: false,
         checkAllGroup: [],
         MAX_LENGTH: 10,
         enableArr:[1,2,3,4,5,6,7,8,9,10],
+        AllPeriod: ['第1节','第2节','第3节','第4节','第5节','第6节','第7节','第8节','第9节','第10节']
+      }
+    },
+    props:{
+      periodModal:{
+        required: true,
+        type: Boolean
       }
     },
     methods: {
+      _updateVisible(flag) {
+        this.periodModal = flag;
+        this.$emit('update:periodModal', this.periodModal); //更新对话框的显示状态
+      },
+      changeVisible(){
+        if (this.periodModal) {
+          this.enableArr=this.setEnableArrForAll();
+        } else{
+          this.checkAllGroup=[];
+          this.checkAll=false;
+          this.indeterminate=false;
+        }
+      },
       //点击全选事件
       handleCheckAll () {
         if (this.indeterminate) {
@@ -61,7 +82,7 @@
         } else {
           this.checkAllGroup = [];
         }
-        this.enableArr=[1,2,3,4,5,6,7,8,9,10];
+        this.enableArr=this.setEnableArrForAll();
       },
       //点击每一节事件
       checkAllGroupChange (data) {
@@ -76,12 +97,16 @@
           this.checkAll = false;
         }
         //只能点击连续
+        this.setDisabled(data);
+      },
+      //只能点击连续,根据已选中设置不可点击的
+      setDisabled(data){
         this.enableArr=[];
         data.forEach(item=>{
           for (let i=1;i<=this.MAX_LENGTH;i++){
             if (item.indexOf(i)!==-1){
-              if (i===10){
-                this.enableArr.push(10);
+              if (i>=10){
+                // this.enableArr.push(this.MAX_LENGTH);
                 this.enableArr.splice(this.enableArr.indexOf(1),1)
                 this.enableArr.splice(this.enableArr.indexOf(2),1)
               }
@@ -103,20 +128,17 @@
         });
 
         if (this.isSequent(resultArr)||resultArr.length===1) {
-          //连续节次
-          this.$alert(resultArr.join(','), '成功', {
-            confirmButtonText: '确定',
-          });
+          this.$emit('ok', resultArr.join(',')); // 显示选中节次
+          this._updateVisible(false);
         }else {
-          this.$alert('不是连续节次', '失败', {
-            confirmButtonText: '确定',
-          });
+          this.$emit('error');
+          this._updateVisible(false);
         }
 
       },
       //取消回调事件
       cancel(){
-        this.$emit('cancel');
+        this._updateVisible(false);
       },
       //选择的节次按顺序排列
       sortArr(arr){
@@ -134,34 +156,35 @@
         arr.forEach(item=>{
           numArr.push(this.getNumFormStr(item));
         });
-        this.sortArr(numArr);
-        let length=numArr.length;
-        for (let i=0;i<=length-2;i++){
-          if (parseInt(numArr[i])+1===parseInt(numArr[i+1])){
-            return true;
-          } else {
-            return false;
-          }
+        return this.maxArray(numArr) - this.minArray(numArr) === arr.length-1;
+      },
+      //求数组最大最小值
+      maxArray(arr) {
+        return Math.max(...arr);
+      },
+      minArray(arr) {
+        return Math.min(...arr);
+      },
+      //设置全部可点击
+      setEnableArrForAll(){
+        let arr=[];
+        for (let i=1;i<=this.MAX_LENGTH;i++){
+          arr.push(i);
         }
-      }
+        return arr;
+      },
     }
   }
 </script>
 
 <style scoped>
-  .col{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    /*justify-content: space-between;*/
-  }
   .checkboxGroup{
     display: flex;
     height: 100px;
-    width: 300px;
-    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
   }
-  .sep{
-    margin-top: 10px
+  .checkboxItem{
+    flex-basis: 20%;
   }
 </style>
