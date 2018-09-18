@@ -9,22 +9,27 @@ export default new Router({
     {
       path: '/',
       name: 'index',
-      component: resolve=>require(['@/pages/index'],resolve)
+      component: resolve => require(['@/pages/index'], resolve)
     },
     {
       path: '/chooseWeek',
       name: 'chooseWeek',
-      component: resolve=>require(['@/components/chooseWeek/example'],resolve)
+      component: resolve => require(['@/components/chooseWeek/example'], resolve)
     },
     {
       path: '/passwordConfirm',
       name: 'passwordConfirm',
-      component: resolve=>require(['@/components/passwordConfirm/passwordConfirm'],resolve)
+      component: resolve => require(['@/components/passwordConfirm/passwordConfirm'], resolve)
     },
     {
       path: '/sequentCheckbox',
       name: 'sequentCheckbox',
-      component: resolve=>require(['@/components/sequentCheckbox/example'],resolve)
+      component: resolve => require(['@/components/sequentCheckbox/example'], resolve)
+    },
+    {
+      path: '/inputNumber',
+      name: 'inputNumber',
+      component: resolve => require(['@/components/inputNumber/example'], resolve)
     },
   ]
 })
