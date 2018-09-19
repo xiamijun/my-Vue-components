@@ -8,3 +8,6 @@
 
 3. passwordConfirm  
 密码强校验
+
+4. inputNumber  
+输入框回显长度
