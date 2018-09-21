@@ -2,7 +2,7 @@
   <div>
     <span :class="{red:isRed}">{{inputContent.length}}</span>
     <span>/</span>
-    <span>{{maxLength}}</span>
+    <span>{{maxLength}} (请填写{{minLength}}-{{maxLength}}字)</span>
   </div>
 </template>
 
@@ -11,10 +11,17 @@
     name: "inputNumber",
     props: {
       inputContent: {
+        //输入内容
         type: String,
         default: ''
       },
+      minLength:{
+        //最小长度
+        type: String,
+        default: '1'
+      },
       maxLength: {
+        //最大长度
         type: String,
         default: '10'
       }
