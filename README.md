@@ -11,4 +11,4 @@
 
 4. inputNumber  
 输入框回显长度
-test for contribution
+test for email
