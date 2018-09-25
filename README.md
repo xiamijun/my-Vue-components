@@ -1,5 +1,5 @@
 # Vue组件
-[预览地址](https://xiamijun.github.io/my-Vue-components/dist)
+[预览地址](https://xiamijun.github.io/my-Vue-components/dist/#/)
 1. chooseWeek  
 选择周，可全选、选单周、选双周  
 
