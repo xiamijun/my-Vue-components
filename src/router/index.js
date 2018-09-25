@@ -31,5 +31,10 @@ export default new Router({
       name: 'inputNumber',
       component: resolve => require(['@/components/inputNumber/example'], resolve)
     },
+    {
+      path: '/selectUser',
+      name: 'selectUser',
+      component: resolve => require(['@/components/selectUser/example'], resolve)
+    },
   ]
 })

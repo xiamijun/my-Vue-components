@@ -4,6 +4,7 @@
     <button @click="goPasswordConfirm">密码强校验</button>
     <button @click="goSequentCheckbox">选择连续checkbox</button>
     <button @click="goInputNumber">输入框回显长度</button>
+    <button @click="goSelectUser">选择用户</button>
   </div>
 </template>
 
@@ -25,6 +26,9 @@
       },
       goInputNumber() {
         this.$router.push('inputNumber');
+      },
+      goSelectUser() {
+        this.$router.push('selectUser');
       }
     }
   }
