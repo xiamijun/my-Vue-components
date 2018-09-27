@@ -36,5 +36,10 @@ export default new Router({
       name: 'selectUser',
       component: resolve => require(['@/components/selectUser/example'], resolve)
     },
+    {
+      path: '/dateSelect',
+      name: 'dateSelect',
+      component: resolve => require(['@/components/dateSelect/example'], resolve)
+    },
   ]
 })

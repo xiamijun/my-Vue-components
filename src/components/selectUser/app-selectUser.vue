@@ -12,57 +12,59 @@
         <div class="tabContent">
 
           <!--选择教职工-->
-            <div class="tabListContent">
-              <!--筛选条件-->
-              <div class="filterRequirementContent">
-                <div class="filterRequirement" :style="{height:checkType?'423px':'385px'}">
-                  <div class="filterOrganization">
-                    <h4 class="publicTitle">性别:</h4>
-                    <Select
-                      v-model="teacherFilter.filterRequirement.sex" class="cssPublicSelect" placeholder="全部">
-                      <Option v-for="item in teacherFilter.sexList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-                    </Select>
-                  </div>
-
-                  <div class="filterOrganization">
-                    <h4 class="publicTitle">姓名:</h4>
-                    <Input style="left: 8px!important;" v-model="teacherFilter.filterRequirement.name" placeholder=""/>
-                  </div>
-                  <div class="filterOrganization">
-                    <h4 class="publicTitle">工号:</h4>
-                    <Input style="left: 8px!important;" v-model="teacherFilter.filterRequirement.jzgno" placeholder=""/>
-                  </div>
+          <div class="tabListContent">
+            <!--筛选条件-->
+            <div class="filterRequirementContent">
+              <div class="filterRequirement" :style="{height:checkType?'423px':'385px'}">
+                <div class="filterOrganization">
+                  <h4 class="publicTitle">性别:</h4>
+                  <Select
+                    v-model="teacherFilter.filterRequirement.sex" class="cssPublicSelect" placeholder="全部">
+                    <Option v-for="item in teacherFilter.sexList" :value="item.value" :key="item.value">{{ item.label
+                      }}
+                    </Option>
+                  </Select>
                 </div>
-                <!--查询-->
-                <div>
-                  <Button class="selectionMchanism">查询</Button>
+
+                <div class="filterOrganization">
+                  <h4 class="publicTitle">姓名:</h4>
+                  <Input style="left: 8px!important;" v-model="teacherFilter.filterRequirement.name" placeholder=""/>
+                </div>
+                <div class="filterOrganization">
+                  <h4 class="publicTitle">工号:</h4>
+                  <Input style="left: 8px!important;" v-model="teacherFilter.filterRequirement.jzgno" placeholder=""/>
                 </div>
               </div>
-              <!--选择教职工table-->
-              <div class="showTable">
-                <div v-if="checkType"
-                     :class="['tableCheckboxData',{select:teacherFilter.selectAllChecked}]"
-                     @click="handleCheckedAllResult">
-                  选择全部查询结果
-                </div>
-                <div class="tableFrameBorderRight">
+              <!--查询-->
+              <div>
+                <Button class="selectionMchanism">查询</Button>
+              </div>
+            </div>
+            <!--选择教职工table-->
+            <div class="showTable">
+              <div v-if="checkType"
+                   :class="['tableCheckboxData',{select:teacherFilter.selectAllChecked}]"
+                   @click="handleCheckedAllResult">
+                选择全部查询结果
+              </div>
+              <div class="tableFrameBorderRight">
+                <div
+                  class="tableListContent tableFrameBorderLeft tableInfoBoxSet"
+                  :class="{hasDataAndPage:!!teacherFilter.dataList.length}">
                   <div
-                    class="tableListContent tableFrameBorderLeft tableInfoBoxSet"
-                    :class="{hasDataAndPage:!!teacherFilter.dataList.length}">
-                    <div
-                      :class="['tableSelectAllData',{tableSelectAllTrue:teacherFilter.selectAllTableChecked}]"
-                      @click="teacherSelectAllClickFun">
-                    </div>
-                    <Table
-                      border
-                      :columns="teacherFilter.columns4"
-                      :data="teacherFilter.dataList"
-                      :stripe="stripe">
-                    </Table>
-
+                    :class="['tableSelectAllData',{tableSelectAllTrue:teacherFilter.selectAllTableChecked}]"
+                    @click="teacherSelectAllClickFun">
                   </div>
+                  <Table
+                    border
+                    :columns="teacherFilter.columns4"
+                    :data="teacherFilter.dataList"
+                    :stripe="stripe">
+                  </Table>
+
                 </div>
               </div>
+            </div>
 
           </div>
           <!--固定-->
@@ -74,12 +76,14 @@
             </div>
             <div class="rightCheckedUserList">
               <ul>
-                <li v-for="(item,index) in selected" class="selectedList" >
+                <li v-for="(item,index) in selected" class="selectedList">
                   <Tooltip placement="top">
-                    <span class="selectedListP" >{{item.name}}</span>
+                    <span class="selectedListP">{{item.name}}</span>
                     <p slot="content">{{item.name}}</p>
                   </Tooltip>
-                  <div class="listDel" @click="handleClickDelSelList(item,index)"><Icon type="close"></Icon></div>
+                  <div class="listDel" @click="handleClickDelSelList(item,index)">
+                    <Icon type="close"></Icon>
+                  </div>
                 </li>
               </ul>
             </div>
@@ -94,7 +98,6 @@
   </div>
 </template>
 <script>
-  import tSelect from "./child/select";//引入select模块
   import checkedItem from "./child/selectCheckBoxItem";
 
   export default {
@@ -112,7 +115,7 @@
       title: {
         type: String,
         default: "批量添加人员"
-      },
+      }
     },
     data() {
       return {
@@ -188,7 +191,6 @@
         this.showModel = value;
         if (value) {
           this.teacherFilter.filterRequirement = {};
-          this.handleClickChoiceCondition();
         }
       },
       /**
@@ -212,9 +214,6 @@
         }
       },
 
-    },
-    components: {  //注册组件
-      tSelect
     },
     methods: {
       //清空已经选择的数据
@@ -240,7 +239,7 @@
         var element = createElement(checkedItem, {
           props: {
             checkModel: this.checkType,
-            isChecked: (this.checkType && params.row.selected) || (!this.checkType && (this.selected.length && (this.selected[0].id == params.row.id)))
+            isChecked: (this.checkType && params.row.selected) || (!this.checkType && (this.selected.length && (this.selected[0].id === params.row.id)))
           },
           on: {
             selectCurrentTableItem: (event) => {
@@ -327,7 +326,7 @@
         function checkItem(array, key, value) {
           var returnIndex = -1;
           array.forEach((_item, index) => {
-            if (String(_item[key]) == String(value)) {
+            if (String(_item[key]) === String(value)) {
               returnIndex = index;
               return false
             }
@@ -345,39 +344,20 @@
             this.handleClickClearList();
             return;
           }
-          this.$get(this.ME.teacherList, {}, (data) => {
-            var dataList = data.data.datalist;
-            this.teacherFilter.selectAllChecked = !this.teacherFilter.selectAllChecked;  //全选状态
-            this.selected = dataList;
-            this.teacherSelectAllClickFun();   //table中全选按钮
-            if (!this.teacherFilter.selectAllChecked) this.handleClickClearList(); //清空列表
-            if (dataList instanceof Array) {
-              dataList.forEach((item, index) => {
-                var queryindex = this.checkArrayItem(this.selected, "id", item.id);
-                item.selected = (queryindex >= 0);//默认不选中
-              });
-            }
+          this.teacherFilter.selectAllChecked = !this.teacherFilter.selectAllChecked;  //全选状态
+          this.selected = this.teacherFilter.dataList;
+          this.teacherSelectAllClickFun();   //table中全选按钮
+          if (!this.teacherFilter.selectAllChecked) {
+            //清空列表
+            this.handleClickClearList();
+          }
+          this.teacherFilter.dataList.forEach((item, index) => {
+            var queryindex = this.checkArrayItem(this.selected, "id", item.id);
+            item.selected = (queryindex >= 0);//默认不选中
           });
         }
       },
 
-      //教师列表 - 筛选事件
-      handleClickChoiceCondition() {
-        this.teacherFilter.choiceTeacherData = [];
-        this.$get(this.ME.teacherList, {}, (data) => {
-          var dataList = data.data.datalist;
-
-          if (dataList instanceof Array) {
-            dataList.forEach((item, index) => {
-              var queryindex = this.checkArrayItem(this.selected, "id", item.id);
-              item.selected = (queryindex >= 0);//默认不选中
-            })
-            this.teacherFilter.dataList = dataList;
-          } else {
-            this.teacherFilter.dataList = [];
-          }
-        });
-      },
       /**
        * 组件已选择用户项 - 删除单个已选列表
        * @param item {Object} 当前删除项数据
@@ -388,11 +368,11 @@
       handleClickDelSelList(item, seartchIndex, searchAll) {
         var queryindex = -1;
         //清空列表
-          this.teacherFilter.selectAllChecked = false;
-          queryindex = this.checkArrayItem(this.teacherFilter.dataList, "id", item.id);
-          if (queryindex >= 0) {
-            queryindex = this.cancelSelectTeacherUserFun(this.teacherFilter.selectData, this.teacherFilter.dataList[queryindex]);
-            return true;
+        this.teacherFilter.selectAllChecked = false;
+        queryindex = this.checkArrayItem(this.teacherFilter.dataList, "id", item.id);
+        if (queryindex >= 0) {
+          queryindex = this.cancelSelectTeacherUserFun(this.teacherFilter.selectData, this.teacherFilter.dataList[queryindex]);
+          return true;
 
         }
         this.selected.splice(seartchIndex, 1);
@@ -470,15 +450,6 @@
       },
 
       /**
-       * 分页事件 --教师
-       * @param page {Number} 当前页码
-       * @return {void} 无
-       */
-      changePage(page) {
-        this.loadTeacherInfo(page);
-      },
-
-      /**
        * table教师选中当前页所有数据
        * @param event {Object} window对象
        * @return {void} 无
@@ -516,7 +487,7 @@
           filterTeacherData: JSON.parse(JSON.stringify(this.teacherFilter.filterRequirement)),
         };
         //选择全部
-          this.$emit("ok", JSON.parse(JSON.stringify(this.selected)), handler);
+        this.$emit("ok", JSON.parse(JSON.stringify(this.selected)), handler);
 
         if (handler.close) {
           this.$emit("input", false);
@@ -528,40 +499,7 @@
         this.$emit("cancel");
         this.showModel = false;
       },
-      /**
-       * 教师页码切换
-       * @param page {Number} 页码
-       */
-      loadTeacherInfo(page) {
 
-        this.$get(this.ME.teacherList, {}, (data) => {
-          var dataList = data.data.datalist;
-          if (dataList instanceof Array) {
-            dataList.forEach((item, index) => {
-              var queryindex = this.checkArrayItem(this.selected, "id", item.id);
-              item.selected = (queryindex >= 0);//默认不选中
-            });
-            this.teacherFilter.dataList = dataList;
-          } else {
-            this.teacherFilter.dataList = [];
-          }
-          if (!this.teacherFilter.selectAllChecked) {  //判断全选和checked选中状态
-            var selectCount = 0;
-            this.selected.forEach((item, index) => {
-              this.teacherFilter.dataList.forEach((_item, _index) => {
-                if (item.id === _item.id) {
-                  selectCount++;
-                }
-                if (selectCount === 10) {
-                  this.teacherFilter.selectAllTableChecked = true;
-                } else {
-                  this.teacherFilter.selectAllTableChecked = false;
-                }
-              })
-            })
-          }
-        });
-      },
       /**
        * 循环子节点设置执行callback设置setAttribute
        * @param child {Object} 当前节点信息this
@@ -594,6 +532,11 @@
           item.$el.setAttribute(scopedName, "");
         })
       })
+    },
+    created(){
+      this.$get(this.ME.teacherList, {}, (data) => {
+        this.teacherFilter.dataList=data.data.datalist;
+      });
     }
   }
 </script>
@@ -743,8 +686,6 @@
     margin: -16px;
     overflow: hidden;
   }
-
-
 
   .tabContent {
     min-height: 444px;

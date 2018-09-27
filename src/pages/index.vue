@@ -5,6 +5,7 @@
     <button @click="goSequentCheckbox">选择连续checkbox</button>
     <button @click="goInputNumber">输入框回显长度</button>
     <button @click="goSelectUser">选择用户</button>
+    <button @click="goDateSelect">选择日期</button>
   </div>
 </template>
 
@@ -29,6 +30,9 @@
       },
       goSelectUser() {
         this.$router.push('selectUser');
+      },
+      goDateSelect() {
+        this.$router.push('dateSelect');
       }
     }
   }
