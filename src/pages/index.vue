@@ -6,6 +6,7 @@
     <button @click="goInputNumber">输入框回显长度</button>
     <button @click="goSelectUser">选择用户</button>
     <button @click="goDateSelect">选择日期</button>
+    <button @click="goRange">移动端拖拽选择范围</button>
   </div>
 </template>
 
@@ -33,6 +34,9 @@
       },
       goDateSelect() {
         this.$router.push('dateSelect');
+      },
+      goRange() {
+        this.$router.push('range');
       }
     }
   }

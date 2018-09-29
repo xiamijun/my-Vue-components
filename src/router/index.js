@@ -41,5 +41,10 @@ export default new Router({
       name: 'dateSelect',
       component: resolve => require(['@/components/dateSelect/example'], resolve)
     },
+    {
+      path: '/range',
+      name: 'range',
+      component: resolve => require(['@/components/range/example'], resolve)
+    },
   ]
 })
