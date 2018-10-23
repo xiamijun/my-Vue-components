@@ -46,5 +46,10 @@ export default new Router({
       name: 'range',
       component: resolve => require(['@/components/range/example'], resolve)
     },
+    {
+      path: '/tableColumnFilter',
+      name: 'tableColumnFilter',
+      component: resolve => require(['@/components/tableColumnFilter/example'], resolve)
+    }
   ]
 })

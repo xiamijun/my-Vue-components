@@ -7,6 +7,7 @@
     <button @click="goSelectUser">选择用户</button>
     <button @click="goDateSelect">选择日期</button>
     <button @click="goRange">移动端拖拽选择范围</button>
+    <button @click="goTable">表格筛选列</button>
   </div>
 </template>
 
@@ -37,6 +38,9 @@
       },
       goRange() {
         this.$router.push('range');
+      },
+      goTable() {
+        this.$router.push('tableColumnFilter');
       }
     }
   }

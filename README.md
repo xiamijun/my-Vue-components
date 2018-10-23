@@ -32,3 +32,10 @@ tableData: 默认选择日期
 min: 左侧最小值
 max: 右侧最大值
 ```
+
+7. tableColumnFilter  
+表格筛选要展示的列
+```
+filterFiled：所有要被选择的列
+defaultCheck：默认展示的列
+```
