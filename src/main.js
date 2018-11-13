@@ -16,6 +16,7 @@ import './assets/sass/layout.scss'//更换elementUI组件的样式
 import inter from './commons/interface.js'
 import funcs from './commons/funcs.js'
 
+
 Vue.use(inter)
 Vue.use(funcs)
 Vue.use(Vuex)

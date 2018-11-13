@@ -50,6 +50,11 @@ export default new Router({
       path: '/tableColumnFilter',
       name: 'tableColumnFilter',
       component: resolve => require(['@/components/tableColumnFilter/example'], resolve)
-    }
+    },
+    {
+      path: '/slider',
+      name: 'slider',
+      component: resolve => require(['@/components/slider/sliderBlock'], resolve)
+    },
   ]
 })

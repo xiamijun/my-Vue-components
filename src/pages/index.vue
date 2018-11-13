@@ -8,6 +8,7 @@
     <button @click="goDateSelect">选择日期</button>
     <button @click="goRange">移动端拖拽选择范围</button>
     <button @click="goTable">表格筛选列</button>
+    <button @click="goSlider">滑动选中单元格</button>
   </div>
 </template>
 
@@ -41,6 +42,9 @@
       },
       goTable() {
         this.$router.push('tableColumnFilter');
+      },
+      goSlider() {
+        this.$router.push('slider');
       }
     }
   }

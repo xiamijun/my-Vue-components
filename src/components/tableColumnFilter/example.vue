@@ -56,7 +56,6 @@
     <div>
       <Table :data="tableData" :columns="tableColumns" border></Table>
     </div>
-
   </div>
 </template>
 <script>
@@ -240,7 +239,7 @@
           let readView = h('a', {
             on: {
               click: () => {
-
+                console.log(12);
               }
             }
           }, '管理学生名单');
