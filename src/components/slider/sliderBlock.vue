@@ -1,11 +1,11 @@
 <template xmlns:v-bind="http://www.w3.org/1999/xhtml">
-  <div class="timeStrategyArea clearfix">
+  <div class="timeStrategyArea">
     <div class="setChooseArea">
       <el-radio :disabled='!setChecked' class="radioBtn greenBlock" v-model="radio" label="1">选中</el-radio>
       <el-radio :disabled='!setChecked' class="radioBtn" v-model="radio" label="2">清除选中</el-radio>
       <div class="radioArea" v-if="!setChecked"></div>
     </div>
-    <div class="sliderTimeArea clearfix">
+    <div class="sliderTimeArea">
       <ul class="weekDay">
         <li>时间段</li>
         <li>周一</li>
@@ -155,26 +155,11 @@
             chooseArr[drawIndex].isGreenClass = drawFalg;
           }
         }
-      },
-      drawDataBlock(data) {
-        console.log(data)
-        $.each(data, function (i, v) {
-          let rowIndex = weeklyName.indexOf(i) + 1;
-          $.each(v, function (i, v) {
-            let start = v.slice(0, 2) - 0;
-            let end = v.slice(6, 8) - 0;
-            for (let i = (start + 1); i <= end; i++) {
-              let drawIndex = numChooseObj[rowIndex + '' + i]
-              chooseArr[drawIndex].isGreenClass = true;
-            }
-          })
-        });
-      },
+      }
     },
   }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .timeStrategyArea {
     background-color: #F9FBFF;
@@ -192,47 +177,6 @@
     position: relative;
     width: 100%;
     height: 100%;
-  }
-
-  .title {
-    position: absolute;
-    top: 1.4rem;
-    left: 0.54rem;
-    height: 0.96rem;
-    width: 0.31rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0.05rem;
-    background-color: #1FBF85;
-    color: #ffffff;
-    font-size: 0.14rem;
-    z-index: 99;
-  }
-
-  .title:after {
-    content: "";
-    width: 0;
-    height: 0;
-    position: absolute;
-    left: 0.27rem;
-    top: 0.39rem;
-    border-top: solid 0.1rem transparent;
-    border-left: solid 0.1rem #1FBF85;
-    border-bottom: solid 0.1rem transparent;
-  }
-
-  .timeStrategyTitle:before {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    top: 0rem;
-    left: .7rem;
-    height: 100%;
-    width: 1px;
-    background-color: #DCE5F1;
-    z-index: 50;
   }
 
   ul {
@@ -340,17 +284,6 @@
     line-height: .18rem;
     border-radius: 0.09rem;
     text-align: center;
-  }
-
-  .starChoose {
-    color: #ff9933;
-    font-size: 0.14rem;
-  }
-
-  .mess {
-    color: #9f9fa0;
-    margin: .2rem 0;
-    margin-right: .2rem;
   }
 
   .radioArea {
