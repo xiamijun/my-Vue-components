@@ -56,5 +56,15 @@ export default new Router({
       name: 'slider',
       component: resolve => require(['@/components/slider/sliderBlock'], resolve)
     },
+    {
+      path: '/complexTable',
+      name: 'complexTable',
+      component: resolve => require(['@/components/complexTable/example'], resolve)
+    },
+    {
+      path: '/tipModal',
+      name: 'tipModal',
+      component: resolve => require(['@/components/tip-modal/example'], resolve)
+    },
   ]
 })

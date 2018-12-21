@@ -9,6 +9,8 @@
     <button @click="goRange">移动端拖拽选择范围</button>
     <button @click="goTable">表格筛选列</button>
     <button @click="goSlider">滑动选中单元格</button>
+    <button @click="goComplexTable">表格组件</button>
+    <button @click="goTipModal">弹窗组件</button>
   </div>
 </template>
 
@@ -45,6 +47,12 @@
       },
       goSlider() {
         this.$router.push('slider');
+      },
+      goComplexTable() {
+        this.$router.push('complexTable');
+      },
+      goTipModal() {
+        this.$router.push('tipModal');
       }
     }
   }
