@@ -6,7 +6,7 @@
     <transition>
       <div v-show="showFilterPanelFlag" class="filter-panel">
         <CheckboxGroup v-model="selected" @on-change="checkAllGroupChange">
-          <div v-for="item in filterFiled">
+          <div v-for="item in filterFiled" :key="item">
             <Checkbox :label="item" style="margin: 2px 5px"></Checkbox>
           </div>
         </CheckboxGroup>

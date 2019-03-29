@@ -66,5 +66,10 @@ export default new Router({
       name: 'tipModal',
       component: resolve => require(['@/components/tip-modal/example'], resolve)
     },
+    {
+      path: '/iframeTest',
+      name: 'iframeTest',
+      component: resolve => require(['@/components/tip-modal/example'], resolve)
+    },
   ]
 })

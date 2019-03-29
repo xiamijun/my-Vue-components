@@ -11,6 +11,7 @@
     <button @click="goSlider">滑动选中单元格</button>
     <button @click="goComplexTable">表格组件</button>
     <button @click="goTipModal">弹窗组件</button>
+    <button @click="goIframe">iframe</button>
   </div>
 </template>
 
@@ -53,6 +54,9 @@
       },
       goTipModal() {
         this.$router.push('tipModal');
+      },
+      goIframe(){
+        this.$router.push('iframeTest');
       }
     }
   }
