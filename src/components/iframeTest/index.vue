@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <iframe src="../../static/previewFile.html" frameborder="0"></iframe>
+    <iframe :src="iframeSrc" frameborder="0"></iframe>
   </div>
 </template>
 
@@ -10,7 +10,9 @@
 export default {
   name: 'previewFile',
   data() {
-    return {};
+    return {
+      iframeSrc:'../../static/previewFile.html'
+    };
   }
 };
 </script>
